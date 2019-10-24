@@ -1,27 +1,11 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react';
 
 
-class Table extends Component{
- constructor(props){
-   super(props)
-
-   this.state= {
-     dados:[]
-   }
+class Table extends Component {
+  render() {
+    return (
+      <div />
+    );
   }
-   
-
- 
-
- 
-
- render(){
-   return(
-     <div>
-      
-     </div>
-   )
- }
-
 }
-export default Table
+export default Table;

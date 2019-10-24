@@ -1,9 +1,14 @@
-
 import axios from 'axios';
 
 
-const api  = axios.create({
+const apiCatraca2 = axios.create({
+  baseURL: 'http://192.168.8.3/'
+})
+
+const apiCatraca = axios.create({
   baseURL: 'http://192.168.8.2/',
 });
 
-export default api;
+export default {apiCatraca2,apiCatraca}
+
+ 
