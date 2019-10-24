@@ -1,0 +1,36 @@
+
+
+.container{
+  display: flex;
+  background-color:#ddd;
+  flex-direction: initial;
+
+  
+ 
+}
+
+
+.header{
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  flex-direction: column;
+
+  
+
+}
+
+.header strong{
+  font-size: 26px;
+  
+}
+.header a{
+  margin: 10px;
+}
+
+.navbar{
+  padding: 10px;
+
+}
+
+
