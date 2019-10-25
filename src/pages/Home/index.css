@@ -1,0 +1,15 @@
+.imagem {
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 150px;
+
+  align-content: center;
+  align-items: center;
+}
+
+.imagem img {
+}
+
+a {
+  text-decoration: none;
+}

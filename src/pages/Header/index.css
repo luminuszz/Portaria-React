@@ -1,36 +1,23 @@
-
-
-.container{
+.container {
   display: flex;
-  background-color:#ddd;
+  background-color: #ddd;
   flex-direction: initial;
-
-  
- 
 }
 
-
-.header{
+.header {
   display: flex;
   height: 80px;
   justify-content: center;
   flex-direction: column;
-
-  
-
 }
 
-.header strong{
+.header strong {
   font-size: 26px;
-  
 }
-.header a{
+.header a {
   margin: 10px;
 }
 
-.navbar{
+.navbar {
   padding: 10px;
-
 }
-
-
