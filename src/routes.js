@@ -6,6 +6,10 @@ import Home from './pages/Home';
 import Header from './pages/Header';
 import Table from './pages/Table';
 import Login from './pages/Login';
+import autentica from './auth';
+
+// Private
+
 const Routes = ()=>{
   return(
   

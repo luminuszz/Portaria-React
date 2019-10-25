@@ -30,38 +30,11 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.setDados = this.setDados.bind(this);
-    this.setDados2 = this.setDados2.bind(this);
     
-    
-  }
-
-  componentDidMount() {
-    this.setDados();
-    this.setDados2();
   }
 
   // eslint-disable-next-line class-methods-use-this
-  async setDados() {
-    await apiCatraca.post('login.fcgi', {
-      login: 'admin',
-      password: 'admin',
-    }).then((res) => {
-      const token = res.data.session;
-      console.log(token);
-      localStorage.setItem('token', token);
-    });
-  }
-  async setDados2() {
-    apiCatraca.post('login.fcgi', {
-      login: 'admin',
-      password: 'admin',
-    }).then((res) => {
-      const token = res.data.session;
-      console.log(token);
-      localStorage.setItem('token2', token);
-    });
-  }
+  
 
 
   render() {
