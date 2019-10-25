@@ -10,11 +10,11 @@ const Routes = ()=>{
   return(
   
     <BrowserRouter>
-    <Header/>
+    
      
     <Switch>
    
-   
+      <Route exact path='/'component={Header}/>
       <Route exact path='/login' component={Login}/>
       <Route exact path='/home' component={Home}/>
       <Route exact path='/table' component={Table}/>
