@@ -1,37 +1,42 @@
 import React, { Component, useState } from 'react';
-import axios from 'axios';
 import './index.css'
 import abitat from '../../assets/abitat.png';
 import { Input,Button,FormControlLabel   } from '@material-ui/core';
-import { func } from 'prop-types';
-
+import {apiCatraca,apiCatraca2} from '../../services';
+import Redirect from  'react-router-dom';
+import session from '../../auth';
 
 export default function Login() {
   
   const [inputlogin,setlogin] = useState('');
   const [inputsenha,setSenha] = useState('');
 
-   async function handleLogin(e){
+    function handleLogin(e){
+     console.log(session())
     e.preventDefault()
     const login = inputlogin;
     const senha = inputsenha;
-    await axios.all([
-      axios.post('http://192.168.8.2/login.fcgi',{data:{
-        login: login ,
-	    	password: senha
-      }}),
+    
+     apiCatraca.post('login.fcgi',{
+      data:{
+        login: login,
+        password: senha
+      }
+    }).then((r)=>{
+      console.log(r.data.session)
+      localStorage.setItem('token1',r.data.session);
+    })
 
-      axios.post('http://192.168.8.3/login.fcgi',{data:{
-        login: login ,
-	    	password: senha
-      }})
-      
-
-    ]).then(axios.spread((tokenCatraca1,tokenCatraca2)=>{
-      localStorage.setItem('Catraca1',tokenCatraca1);
-      localStorage.setItem('Catraca2',tokenCatraca2);
-
-    }))
+     apiCatraca2.post('login.fcgi',{
+      data:{
+        login:login,
+        passwrod:senha
+      }
+    }).then((r)=>{
+      console.log(r.data.session)
+      localStorage.setItem('token2',r.data.session);
+    })
+    
 
 
 
