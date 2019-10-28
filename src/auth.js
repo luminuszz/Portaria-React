@@ -14,7 +14,8 @@ import axios from 'axios';
     
     
     
-    val1 && val2 === true ? 
+    val1 && val2 === true 
+    ? 
 
     validar = true 
     
@@ -33,7 +34,3 @@ export default session
 
 
 
-/*
-
-   
-*/

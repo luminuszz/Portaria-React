@@ -18,16 +18,17 @@ import session from './auth';
 
 const Routes = ()=>{
   return(
-    
-  
+   
     <BrowserRouter>
+    <Route exact path='*/'component={Header}/>
      <Route  path="/">
       {session() === true ? console.log("logado") :  <Redirect to="/login" />}
       </Route>
-      
+       
+  
     <Switch> 
     
-      <Route exact path='/'component={Header}/>
+    
       <Route exact path='/login' component={Login}/>
       <Route exact path='/home' component={Home}/>
       <Route exact path='/table' component={Table}/>
