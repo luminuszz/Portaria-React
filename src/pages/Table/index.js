@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,16 +7,21 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { display, textAlign } from '@material-ui/system';
+import axios from 'axios';
+
+
+
+
 
 const useStyles = makeStyles({
   root: {
     height:'80%',
-    width: '70%',
+    width: '80%',
     justifyContent:'center',
     alignContent:'center',
     display: 'flex',
     textAlign:'center',
-    marginLeft:'150px',
+    marginLeft:'140px',
     marginTop:'40px',
     
 
@@ -27,7 +32,15 @@ const useStyles = makeStyles({
   },
 });
 
+
+
+
+
+
 function createData(name, calories, fat, carbs, protein) {
+
+
+
   return { name, calories, fat, carbs, protein };
 }
 
@@ -40,13 +53,30 @@ const rows = [
 ];
 
 export default function SimpleTable() {
+  const [testeArray,setTeste] = useState([]);
+  function teste(){
+    
+      axios.get('https://swapi.co/api/planets').then((r)=>{
+        console.log(r.data.results);
+
+        setTeste(r.data.results)
+      
+    })
+
+  }
+  
+
+  
   const classes = useStyles();
 
   return (
+    <div>
+     
     <Paper className={classes.root}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
+            <button onClick={teste}></button>
             <TableCell>Dessert (100g serving)</TableCell>
             <TableCell align="right">Calories</TableCell>
             <TableCell align="right">Fat&nbsp;(g)</TableCell>
@@ -55,7 +85,7 @@ export default function SimpleTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {testeArray.map(row => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
@@ -69,5 +99,8 @@ export default function SimpleTable() {
         </TableBody>
       </Table>
     </Paper>
+   
+    </div>
+    
   );
 }

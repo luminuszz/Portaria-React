@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import './index.css'
 import abitat from '../../assets/abitat.png';
 import { Input,Button,FormControlLabel   } from '@material-ui/core';
