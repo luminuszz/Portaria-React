@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -37,6 +38,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
+// Styles
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -116,9 +118,33 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// Fim Styles
+
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  //
+  const [testeArray,setTeste] = useState([]);
+   // Chamada api
+  useEffect(()=>{
+  
+    // request com axios
+        axios.get('https://swapi.co/api/planets').then((r)=>{
+        console.log(r.data.results);
+        setTeste(r.data.results)
+
+      
+     })
+  
+      
+      
+    },[])
+  
+
+
+
+
+  // Open menu
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -182,13 +208,13 @@ export default function Dashboard() {
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <Deposits array={testeArray} />
               </Paper>
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+                <Orders array={testeArray} />
               </Paper>
             </Grid>
           </Grid>
