@@ -21,6 +21,7 @@ const Routes = ()=>{
    
     <BrowserRouter>
     <Route exact path='/home'component={Dashboard}/>
+    <Route exact path='/header'component={Header}/>
      <Route  path="/">
       {session() === true ? console.log("logado") :  <Redirect to="/login" />}
       </Route>

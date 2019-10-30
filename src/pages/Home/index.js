@@ -22,6 +22,7 @@ import { mainListItems } from '../listItems/listItems'
 import Chart from '../Chart/Chart';
 import Deposits from '../Deposits/Deposits';
 import Orders from '../Orders/Orders';
+import Header from '../Header/index';
 import {apiCatraca,apiCatraca2} from '../../services'
 
 function Copyright() {
@@ -125,7 +126,7 @@ export default function Dashboard() {
   const token1 = localStorage.getItem('token1')
   const token2 = localStorage.getItem('token2')
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   //
   const [testeArray,setTeste] = useState([]);
    // Chamada api
@@ -164,45 +165,8 @@ export default function Dashboard() {
    
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Portaria HUB
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-       
-      </Drawer>
-      <main className={classes.content}>
+     <Header/>      
+     <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>

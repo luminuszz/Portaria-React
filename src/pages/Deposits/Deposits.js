@@ -17,11 +17,6 @@ export default function Deposits(props) {
   const [array, setArray] = useState([])
   const token1 = localStorage.getItem('token1')
   const token2 = localStorage.getItem('token2')
-
-
-
-
-
   const classes = useStyles();
 
 
