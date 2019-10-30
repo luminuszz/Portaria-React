@@ -22,6 +22,7 @@ import { mainListItems } from '../listItems/listItems'
 import Chart from '../Chart/Chart';
 import Deposits from '../Deposits/Deposits';
 import Orders from '../Orders/Orders';
+import {apiCatraca,apiCatraca2} from '../../services'
 
 function Copyright() {
   return (
@@ -121,6 +122,8 @@ const useStyles = makeStyles(theme => ({
 // Fim Styles
 
 export default function Dashboard() {
+  const token1 = localStorage.getItem('token1')
+  const token2 = localStorage.getItem('token2')
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   //
@@ -129,9 +132,13 @@ export default function Dashboard() {
   useEffect(()=>{
   
     // request com axios
-        axios.get('https://swapi.co/api/planets').then((r)=>{
-        console.log(r.data.results);
-        setTeste(r.data.results)
+        apiCatraca.post(`/load_objects.fcgi?session=${token1}`,{
+          object:'users',
+          limit :20,
+        })
+        .then((r)=>{
+        console.log(r.data.users);
+        setTeste(r.data.users)
 
       
      })

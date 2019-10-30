@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Orders(props) {
   
+  
 const [key,setKey] = useState('');
 const [array,setArray] = useState([]);
 
@@ -64,16 +65,20 @@ const [array,setArray] = useState([]);
           </TableRow>
         </TableHead>
         <TableBody>
-        {array.map(row => (
-            <TableRow key={row.name}>
+       
+        {
+             array.map((row)=>(
+              <TableRow key={row.id} >
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
-              <TableCell align="right"><Button onClick={()=>{pegarChave(row.name)}} color='primary'>Ação</Button></TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell align="right"></TableCell>
+              <TableCell align="right"><Button onClick={()=>{pegarChave()}} color='primary'>Ação</Button></TableCell>
             </TableRow>
-          ))}
+             ))
+           }
+         
         </TableBody>
       </Table>
       <div className={classes.seeMore}>

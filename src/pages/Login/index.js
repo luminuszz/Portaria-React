@@ -7,9 +7,11 @@ import {Redirect,useHistory} from  'react-router-dom';
 import session from '../../auth';
 import SimpleModal from './modal';
 import CircularIndeterminate from '../../icons';
+import axios from 'axios';
+
 
 export default function Login(props) {
-
+  
   let redirect = useHistory()
   
   const [inputlogin,setlogin] = useState('');
@@ -30,12 +32,15 @@ export default function Login(props) {
     const login = inputlogin;
     const senha = inputsenha;
     
-     apiCatraca.post('login.fcgi',{
-           data:{
+    axios({
+      method: 'post',
+      url: 'http://192.168.8.2/login.fcgi',
+      data: {
         login: login,
-        password: senha
+		    password: senha
       }
-    }).then((r)=>{
+    })
+    .then((r)=>{
       console.log(r.data.session)
       localStorage.setItem('token1',r.data.session);
 
@@ -51,16 +56,19 @@ export default function Login(props) {
       setVisible(false)
      
     )
-
-     apiCatraca2.post('login.fcgi',{
-      data:{
-        login:login,
-        passwrod:senha
+    axios({
+      method: 'post',
+      url: 'http://192.168.8.2/login.fcgi',
+      data: {
+        login: login,
+		    password: senha
       }
+  
     }).then((r)=>{
       console.log(r.data.session)
       localStorage.setItem('token2',r.data.session);
-     
+      redirect.push('/home')
+       
     })
 
    
@@ -92,7 +100,7 @@ export default function Login(props) {
 
               <label htmlFor="login">Login</label>
             
-             <Input  value={inputlogin} onChange={(e)=>setlogin(e.target.value)} autoFocus='true'type='email' className='formControl'/>
+             <Input  value={inputlogin} onChange={(e)=>setlogin(e.target.value)} autoFocus='true'type='text' className='formControl'/>
                 
             </div>
             <div className='inputLabel'>
