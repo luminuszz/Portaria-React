@@ -3,7 +3,7 @@ import { BrowserRouter,Route,Switch,Redirect } from "react-router-dom";
 
 
 
-import Home from './pages/Home';
+import Dashboard from './pages/Home';
 import Header from './pages/Header';
 import Table from './pages/Table';
 import Login from './pages/Login';
@@ -20,7 +20,7 @@ const Routes = ()=>{
   return(
    
     <BrowserRouter>
-    <Route exact path='*/'component={Header}/>
+    <Route exact path='*/'component={Dashboard}/>
      <Route  path="/">
       {session() === true ? console.log("logado") :  <Redirect to="/login" />}
       </Route>
@@ -30,7 +30,7 @@ const Routes = ()=>{
     
     
       <Route exact path='/login' component={Login}/>
-      <Route exact path='/home' component={Home}/>
+      
       <Route exact path='/table' component={Table}/>
 
 

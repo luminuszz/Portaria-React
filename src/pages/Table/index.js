@@ -43,9 +43,18 @@ const useStyles = makeStyles({
 
 export default function SimpleTable() {
   const [testeArray,setTeste] = useState([]);
-  useEffect((e)=>{
+  const [key,setKey] = useState('');
+
+// Pega o id do usuário da tabela
+ function getKey(key){
+  setKey(key);
+ }
+
+
+
+  useEffect(()=>{
   
-    
+      // request com axios
       axios.get('https://swapi.co/api/planets').then((r)=>{
         console.log(r.data.results);
 
@@ -56,11 +65,10 @@ export default function SimpleTable() {
   
 
   },[])
-  
-  
 
-  
   const classes = useStyles();
+  
+ 
 
   return (
     <div>
@@ -84,7 +92,7 @@ export default function SimpleTable() {
               <TableCell align="right">{row.climate}</TableCell>
               <TableCell align="right">{row.rotation_period}</TableCell>
               <TableCell align="right">{row.diameter}</TableCell>
-              <TableCell align="center"><Button variant="contained" color="primary" className={classes.button}>ação</Button></TableCell>
+              <TableCell align="right"><Button onClick={()=>{getKey(row.name)}} variant="contained" color="primary" className={classes.button}>ação</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
