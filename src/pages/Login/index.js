@@ -1,142 +1,110 @@
-import React, { useState } from 'react';
-import './index.css'
-import abitat from '../../assets/abitat.png';
-import { Input,Button,FormControlLabel   } from '@material-ui/core';
-import {apiCatraca,apiCatraca2} from '../../services';
-import {Redirect,useHistory} from  'react-router-dom';
-import session from '../../auth';
-import SimpleModal from './modal';
-import CircularIndeterminate from '../../icons';
-import axios from 'axios';
-
+import React, { useState } from "react";
+import "./index.css";
+import abitat from "../../assets/abitat.png";
+import { Input, Button, FormControlLabel } from "@material-ui/core";
+import { apiCatraca, apiCatraca2 } from "../../services";
+import { Redirect, useHistory } from "react-router-dom";
+import session from "../../auth";
+import SimpleModal from "./modal";
+import CircularIndeterminate from "../../icons";
+import axios from "axios";
 
 export default function Login(props) {
-  
-  let redirect = useHistory()
-  
-  const [inputlogin,setlogin] = useState('');
-  const [inputsenha,setSenha] = useState('');
-  const [estadoReq,setEstado] = useState(false);
-  const [visible,setVisible] = useState(false);
-  
-   
-  
-  
- 
-     function handleLogin(e){
-     console.log(session())
-     
-    e.preventDefault()
-    
-    
+  let redirect = useHistory();
+
+  const [inputlogin, setlogin] = useState("");
+  const [inputsenha, setSenha] = useState("");
+  const [estadoReq, setEstado] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  function handleLogin(e) {
+    console.log(session());
+
+    e.preventDefault();
+
     const login = inputlogin;
     const senha = inputsenha;
-    
+
     axios({
-      method: 'post',
-      url: 'http://192.168.8.2/login.fcgi',
+      method: "post",
+      url: "http://192.168.8.2/login.fcgi",
       data: {
         login: login,
-		    password: senha
+        password: senha
       }
     })
-    .then((r)=>{
-      console.log(r.data.session)
-      localStorage.setItem('token1',r.data.session);
+      .then(r => {
+        console.log(r.data.session);
+        localStorage.setItem("token1", r.data.session);
 
-      setEstado(r.data.session)
-      
+        setEstado(r.data.session);
 
-      estadoReq === true ? 
-       redirect.push('/home')
-       : 
-       redirect.push('/login');  
-      
-    }).finally(
-      setVisible(false)
-     
-    )
+        estadoReq === true ? redirect.push("/home") : redirect.push("/login");
+      })
+      .finally(setVisible(false));
     axios({
-      method: 'post',
-      url: 'http://192.168.8.2/login.fcgi',
+      method: "post",
+      url: "http://192.168.8.2/login.fcgi",
       data: {
         login: login,
-		    password: senha
+        password: senha
       }
-  
-    }).then((r)=>{
-      console.log(r.data.session)
-      localStorage.setItem('token2',r.data.session);
-      redirect.push('/home')
-       
-    })
-
-   
-
+    }).then(r => {
+      console.log(r.data.session);
+      localStorage.setItem("token2", r.data.session);
+      redirect.push("/home");
+    });
   }
-  
-    return (
-      <div>
-        <div id='progress' className={visible?'fadeIn':'fadeOut'}>
-             <CircularIndeterminate/>
-           </div>
 
+  return (
+    <div>
+      <div id="progress" className={visible ? "fadeIn" : "fadeOut"}>
+        <CircularIndeterminate />
+      </div>
 
-      <div className='container animated fadeInUp'>
-        
-      
-        {
-          estadoReq === true ? <SimpleModal corpo={estadoReq} /> : console.log('ok')          
-        }
-      
-        <form  onSubmit={handleLogin}>
+      <div className="container animated fadeInUp">
+        {estadoReq === true ? (
+          <SimpleModal corpo={estadoReq} />
+        ) : (
+          console.log("ok")
+        )}
+
+        <form onSubmit={handleLogin}>
           <div className="containerInput">
-         
             <img src={abitat} alt="abitat" />
 
             <h4>Portaria</h4>
-          
-            <div className='inputLabel'>
 
+            <div className="inputLabel">
               <label htmlFor="login">Login</label>
-            
-             <Input  value={inputlogin} onChange={(e)=>setlogin(e.target.value)} autoFocus='true'type='text' className='formControl'/>
-                
+
+              <Input
+                value={inputlogin}
+                onChange={e => setlogin(e.target.value)}
+                autoFocus="true"
+                type="text"
+                className="formControl"
+              />
             </div>
-            <div className='inputLabel'>
-             
-               <label htmlFor="senha">Senha</label>
-              
-              
-               <Input type='password'value={inputsenha} onChange={(e)=>setSenha(e.target.value)}  className='formControl'/>
+            <div className="inputLabel">
+              <label htmlFor="senha">Senha</label>
+
+              <Input
+                type="password"
+                value={inputsenha}
+                onChange={e => setSenha(e.target.value)}
+                className="formControl"
+              />
             </div>
-            <div>
+            <div></div>
 
-            </div>
-        
-
-          <Button color='primary' type='subimit'  children='Entrar'/>
-
-
-         
-
-
-     
-
-       
-
+            <Button color="primary" type="subimit" children="Entrar" />
           </div>
-          
-
         </form>
-        
       </div>
-      </div>
-      
-    )
-  }
-
-
+    </div>
+  );
+}
 
 /*
  async handleLogin(e){
