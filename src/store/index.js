@@ -1,6 +1,22 @@
+// import redux
 import { createStore, applyMiddleware } from "redux";
-import rootReducer from "./reducers";
+// import redux-persist
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+//import React-tank
 import thunk from "redux-thunk";
-const store = createStore(rootReducer, applyMiddleware(thunk));
+//
+import rootReducer from "./reducers";
 
-export default store;
+const persistConfig = {
+  key: "root",
+  storage
+};
+
+const persistReducerStorage = persistReducer(persistConfig, rootReducer);
+
+const store = createStore(persistReducerStorage, applyMiddleware(thunk));
+
+const persistor = persistStore(store);
+
+export { store, persistor };
