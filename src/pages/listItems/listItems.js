@@ -12,7 +12,7 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-
+import * as actionFunction from "../../store/actions/tableNavbar";
 const useStyles = makeStyles(theme => ({
   link: {
     textDecoration: "none",
@@ -23,35 +23,16 @@ const useStyles = makeStyles(theme => ({
 export const MainListItems = () => {
   const classes = useStyles();
   const dados = useSelector(state => state.tableInfo.data);
-  const addStore = useDispatch();
-  function userRedicrect() {
-    addStore({
-      type: "INFO_REQ",
-      tableName: "Usuários",
-      url: "usuario",
-      object: "usuario"
-    });
-    return;
-  }
+  const addDados = useDispatch();
   function empreRedicrect() {
-    addStore({
-      type: "INFO_REQ",
-      tableName: "Empresas",
-      url: "empresa",
-      object: "empresa"
-    });
-    return;
+    addDados(actionFunction.empreRedicrect());
+  }
+  function userRedicrect() {
+    addDados(actionFunction.userRedicrect());
   }
   function acessLogs() {
-    addStore({
-      type: "INFO_REQ",
-      tableName: "Logs",
-      url: "logs",
-      object: "logs"
-    });
-    return;
+    addDados(actionFunction.acessLogs());
   }
-
   console.log(dados);
   return (
     <div>
