@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 export const MainListItems = () => {
   const classes = useStyles();
-  const dados = useSelector(state => state.data);
+  const dados = useSelector(state => state.tableInfo.data);
   const addStore = useDispatch();
   function userRedicrect() {
     addStore({
@@ -51,6 +51,7 @@ export const MainListItems = () => {
     });
     return;
   }
+
   console.log(dados);
   return (
     <div>

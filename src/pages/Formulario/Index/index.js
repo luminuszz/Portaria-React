@@ -68,7 +68,7 @@ export default function Formulary() {
                   <Typography variant="subtitle1">
                     Usuário Cadastrado
                   </Typography>
-                  <Link className={classes.link} to="/">
+                  <Link className={classes.link} to="/table">
                     <Button className={classes.button}> Voltar</Button>
                   </Link>
                 </React.Fragment>

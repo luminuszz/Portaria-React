@@ -7,8 +7,18 @@ export const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     display: "flex",
-    overflow: "auto",
-    flexDirection: "column"
+    overflow: "auto"
+  },
+  textField: {
+    width: "20%"
+  },
+  search: {
+    display: "flex"
+  },
+  icon: {
+    display: "flex",
+    float: "lefth",
+    flexDirection: "initial"
   },
 
   root: {
@@ -23,6 +33,17 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: "flex-end",
     padding: "0 8px",
     ...theme.mixins.toolbar
+  },
+
+  link: {
+    textDecoration: "none",
+    color: "black"
+  },
+  button: {
+    margin: theme.spacing(1)
+  },
+  buttongrid: {
+    marginLeft: "85%"
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,

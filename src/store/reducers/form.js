@@ -1,5 +1,3 @@
-import { createStore } from "react-redux";
-
 const INITIAL_STATE = {
   data: {
     nome: "",
@@ -8,7 +6,7 @@ const INITIAL_STATE = {
   }
 };
 
-function handleForm(state = INITIAL_STATE, action) {
+export default function handleForm(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "HANDLE_FORM":
       return {
@@ -23,6 +21,3 @@ function handleForm(state = INITIAL_STATE, action) {
       return state;
   }
 }
-const store = createStore(handleForm);
-
-export default store;

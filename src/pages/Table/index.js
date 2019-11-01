@@ -1,6 +1,5 @@
 /* eslint-disable no-script-url */
 import React, { useState, useEffect, useCallback } from "react";
-import Link from "@material-ui/core/Link";
 import Table from "@material-ui/core/Table";
 import Grid from "@material-ui/core/Grid";
 import TableBody from "@material-ui/core/TableBody";
@@ -23,14 +22,17 @@ import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import SplitButton from "../../Components/button";
+import TextField from "@material-ui/core/TextField";
+import SearchIcon from "@material-ui/icons/Search";
 import { useStyles } from "./styles";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 // Generate Order Data
 
 export default function OrdersTable() {
   const [key, setKey] = useState("");
   const [array, setArray] = useState([]);
-  const dados = useSelector(state => state.data);
+  const dados = useSelector(state => state.tableInfo.data);
 
   console.log(dados);
 
@@ -48,9 +50,30 @@ export default function OrdersTable() {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Paper className={classes.paper}>
+                  <div className={classes.buttongrid}>
+                    <Link className={classes.link} to="/cadastro">
+                      <Grid item xs={3}>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          className={classes.button}
+                        >
+                          Cadastrar
+                        </Button>
+                      </Grid>
+                    </Link>
+                  </div>
+                  <TextField
+                    id="standard-basic"
+                    className={classes.textField}
+                    label="Pesquisar"
+                    margin="normal"
+                  />
+
                   {dados.map(dados => (
                     <Title>{dados.tableName}</Title>
                   ))}
+
                   <Table size="small">
                     <TableHead>
                       <TableRow>
