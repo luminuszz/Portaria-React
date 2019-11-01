@@ -1,7 +1,6 @@
 /* eslint-disable no-script-url */
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import Grid from "@material-ui/core/Grid";
 import TableBody from "@material-ui/core/TableBody";
@@ -24,103 +23,16 @@ import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import SplitButton from "../../icons/button";
-
+import { useStyles } from "./styles";
+import { useSelector, useDispatch } from "react-redux";
 // Generate Order Data
-
-const drawerWidth = 240;
-
-const useStyles = makeStyles(theme => ({
-  seeMore: {
-    marginTop: theme.spacing(3)
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column"
-  },
-
-  root: {
-    display: "flex"
-  },
-  toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  menuButton: {
-    marginRight: 36
-  },
-  menuButtonHidden: {
-    display: "none"
-  },
-  title: {
-    flexGrow: 1
-  },
-  drawerPaper: {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  drawerPaperClose: {
-    overflowX: "hidden",
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9)
-    }
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: "100vh",
-    overflow: "auto"
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column"
-  },
-  fixedHeight: {
-    height: 240
-  }
-}));
 
 export default function OrdersTable() {
   const [key, setKey] = useState("");
   const [array, setArray] = useState([]);
+  const dados = useSelector(state => state.data);
+
+  console.log(dados);
 
   // Pega o id do usuário da tabela
 
@@ -136,7 +48,9 @@ export default function OrdersTable() {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Paper className={classes.paper}>
-                  <Title>Usuários</Title>
+                  {dados.map(dados => (
+                    <Title>{dados.tableName}</Title>
+                  ))}
                   <Table size="small">
                     <TableHead>
                       <TableRow>
@@ -149,16 +63,21 @@ export default function OrdersTable() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                        <TableCell align="right">
-                          <SplitButton name="Ação"></SplitButton>
-                        </TableCell>
-                      </TableRow>
+                      {dados.map(dados => (
+                        <TableRow>
+                          <TableCell>{dados.url}</TableCell>
+                          <TableCell>{dados.object} </TableCell>
+                          <TableCell></TableCell>
+                          <TableCell></TableCell>
+                          <TableCell></TableCell>
+                          <TableCell align="right">
+                            <SplitButton
+                              type="button"
+                              name="Ação"
+                            ></SplitButton>
+                          </TableCell>
+                        </TableRow>
+                      ))}
                     </TableBody>
                   </Table>
                 </Paper>

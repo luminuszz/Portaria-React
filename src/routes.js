@@ -29,7 +29,6 @@ const Routes = () => {
       <Switch>
         {/*Routes */}
         <Route exact path="/login" component={Login} />
-        <Route exact path="/erro" component={Erro} />
         {/* Private Routes */}
         <PrivateRoute exact path="/" component={Dashboard} />
         <PrivateRoute exact path="/header" component={Header} />

@@ -2,7 +2,7 @@ import { apiCatraca, apiCatraca2 } from "./services";
 import axios from "axios";
 
 function session() {
-  let validar = false;
+  let validar = true;
   const token1 = localStorage.getItem("token1");
   const token2 = localStorage.getItem("token2");
 

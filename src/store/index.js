@@ -1,15 +1,33 @@
 import { createStore } from "redux";
 
-const INITIALSTATE = {
-  requisition: [],
-  tempReq: "",
-  typeReq: ""
+const INITIAL_STATE = {
+  data: [
+    {
+      tableName: "Tabela",
+      url: "nulo",
+      object: "nulo"
+    }
+  ]
 };
 
-function reducer(state = INITIALSTATE, action) {
+function tableInfo(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case "INFO_REQ":
+      return {
+        data: [
+          {
+            tableName: action.tableName,
+            url: action.url,
+            object: action.object
+          }
+        ]
+      };
+
+    default:
+  }
   return state;
 }
 
-const store = createStore(reducer);
+const store = createStore(tableInfo);
 
 export default store;
