@@ -22,7 +22,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import SplitButton from "../../icons/button";
+import SplitButton from "../../Components/button";
 import { useStyles } from "./styles";
 import { useSelector, useDispatch } from "react-redux";
 // Generate Order Data

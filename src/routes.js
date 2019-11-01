@@ -6,6 +6,7 @@ import Header from "./pages/Header";
 import Table from "./pages/Table";
 import Login from "./pages/Login";
 import session from "./auth";
+import Formulary from "./pages/Formulario/Index";
 
 // Private
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -33,6 +34,7 @@ const Routes = () => {
         <PrivateRoute exact path="/" component={Dashboard} />
         <PrivateRoute exact path="/header" component={Header} />
         <PrivateRoute exact path="/table" component={Table} />
+        <PrivateRoute exact path="/cadastro" component={Formulary} />
       </Switch>
     </BrowserRouter>
   );

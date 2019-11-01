@@ -6,7 +6,7 @@ import { apiCatraca, apiCatraca2 } from "../../services";
 import { Redirect, useHistory } from "react-router-dom";
 import session from "../../auth";
 import SimpleModal from "./modal";
-import CircularIndeterminate from "../../icons";
+import CircularIndeterminate from "../../Components";
 import axios from "axios";
 
 export default function Login(props) {
