@@ -25,7 +25,7 @@ export const MainListItems = () => {
   const dados = useSelector(state => state.tableInfo.data);
   const addDados = useDispatch();
   function empreRedicrect() {
-    addDados(actionFunction.empreRedicrect());
+    addDados(actionFunction.testeThunk());
   }
   function userRedicrect() {
     addDados(actionFunction.userRedicrect());
